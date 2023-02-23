@@ -1,4 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics.Metrics;
+using System.Net.WebSockets;
+using System.Reflection;
+using System.Reflection.Metadata;
 
 namespace InterfaceExercise
 {
@@ -6,6 +11,35 @@ namespace InterfaceExercise
     {
         static void Main(string[] args)
         {
+            var car = new Car()
+            { Year = 2023, Make = "Tesla", Model = "R", wheels = 4, CompanyName = "Tesla", Founder = "Elon Musk" };
+            var truck = new Truck()
+            { Year = 2020, Make = "BMW", Model = "T", wheels = 4, CompanyName = "BMW", Founder = "Karl" };
+            var suv = new SUV()
+            { Year = 2020, Make = "Honda", Model = "E", wheels = 4, CompanyName = "Honda", Founder = "Soichiro" };
+
+            var vehicles = new List<IVehicle>() { car, truck, suv };
+            foreach(var vehicle in vehicles)
+            {
+                Console.WriteLine($"Year: {vehicle.Year}");
+                Console.WriteLine($"Make: {vehicle.Make}");
+                Console.WriteLine($"Model: {vehicle.Model}");
+                Console.WriteLine($"wheels: {vehicle.wheels}");
+               
+            }
+            
+            var companies = new List<ICompany>() { car, truck, suv };
+            foreach (var company in companies)
+            {
+                Console.WriteLine($"Company Name: {company.CompanyName}");
+                Console.WriteLine($"Founder of Company: {company.Founder}");
+               
+            }
+
+            
+        }
+            
+           
             //TODO Be sure to follow BEST PRACTICES when creating classes and interfaces
 
             //Create 2 Interfaces called IVehicle & ICompany
@@ -39,6 +73,6 @@ namespace InterfaceExercise
 
             //Now, create objects of your 3 classes and give their members values;
             //Creatively display and organize their values
-        }
+        
     }
 }
